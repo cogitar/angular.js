@@ -68,7 +68,9 @@ var copyComponent = function(component, pattern, sourceFolder, packageFile) {
 gulp.task('bower', function() {
   var bowerTask = bower.commands.install();
   bowerTask.on('log', function(result) {
-    log('bower:', result.id, result.data.endpoint.name);
+    if (result.data.endpoint) {
+      log('bower:', result.id, result.data.endpoint.name);
+    }
   });
   bowerTask.on('error', function(error) {
     log(error);
